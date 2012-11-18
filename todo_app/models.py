@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib import admin
 
 
+class DateTime(models.Model):
+    datetime = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return unicode(self.datetime)
+
+
 class Item(models.Model):
     name = models.CharField(max_length=60)
     created = models.DateTimeField(auto_now_add=True)
@@ -15,4 +22,13 @@ class ItemAdmin(admin.ModelAdmin):
     search_fields = ["name"]
 
 
+class ItemInline(admin.TabularInline):
+    model = Item
+
+
+class DateAdmin(admin.ModelAdmin):
+    list_display = ["datetime"]
+    inlines = [ItemInline]
+
 admin.site.register(Item, ItemAdmin)
+admin.site.register(DateTime, DateAdmin)

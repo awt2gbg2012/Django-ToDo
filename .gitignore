@@ -1,4 +1,7 @@
 *.log
 *.pot
 *.pyc
+*.swp
+vim.core
 local_settings.py
+mysite/settings.py
